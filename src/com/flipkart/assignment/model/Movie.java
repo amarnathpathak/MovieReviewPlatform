@@ -104,6 +104,7 @@ public class Movie {
         sb.append("name='").append(name).append('\'');
         sb.append(", releaseOn=").append(releaseOn);
         sb.append(", genre=").append(genre);
+        sb.append(", review=").append(reviewCount);
         sb.append(", userScore=").append(userScore);
         sb.append(", criticScore=").append(criticScore);
         sb.append(", totalScore=").append(totalScore);

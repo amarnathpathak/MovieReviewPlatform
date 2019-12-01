@@ -68,6 +68,7 @@ public class FlipKartReviewService implements ReviewService {
 
     @Override
     public List<Movie> getTopMovieScoredByAndReleaseYear(int n, ReviewerType reviewerType, int releasedOn) {
+        System.out.println("getTopMovieScoredByAndReleaseYear: " + n + " " + reviewerType + " " + releasedOn);
         Set<Movie> movies = getMovieBy(reviewerType, null, releasedOn);
         if (movies == null || movies.size() <= 0) {
             System.out.println("No movie by Reviewer");
@@ -76,7 +77,6 @@ public class FlipKartReviewService implements ReviewService {
         List<Movie> movieByScore = new ArrayList<>(movies);
         if (movieByScore != null && movieByScore.size() > 0) {
             List<Movie> m = sortAndGetTop(n, reviewerType, movieByScore);
-            System.out.println("getTopMovieScoredByAndReleaseYear: " + n + " " + reviewerType + " " + releasedOn);
             System.out.println(m);
             return m;
         }
@@ -87,6 +87,7 @@ public class FlipKartReviewService implements ReviewService {
 
     @Override
     public List<Movie> getTopMovieScoredByAndGenre(int n, ReviewerType reviewerType, Genre genre) {
+        System.out.println("getTopMovieScoredByAndGenre: " + n + " " + reviewerType + " " + genre);
         Set<Movie> movies = getMovieBy(reviewerType, genre, null);
         if (movies == null || movies.size() <= 0) {
             System.out.println("No movie by Reviewer");
@@ -95,7 +96,6 @@ public class FlipKartReviewService implements ReviewService {
         List<Movie> movieByScore = new ArrayList<>(movies);
         if (movieByScore != null && movieByScore.size() > 0) {
             List<Movie> m = sortAndGetTop(n, reviewerType, movieByScore);
-            System.out.println("getTopMovieScoredByAndGenre: " + n + " " + reviewerType + " " + genre);
             System.out.println(m);
 
             return m;
@@ -115,6 +115,7 @@ public class FlipKartReviewService implements ReviewService {
         Set<Movie> movies = movieService.getMovieByReleaseYear(releaseOn);
         if (movies != null || movies.size() > 0) {
             float average = averageScore(movies);
+            System.out.println(movies);
             System.out.print("averageSore in " + releaseOn + " is ");
             System.out.println(average);
             return average;
@@ -128,6 +129,7 @@ public class FlipKartReviewService implements ReviewService {
         Set<Movie> movies = movieService.getMovies(genre);
         if (movies != null || movies.size() > 0) {
             float average = averageScore(movies);
+            System.out.println(movies);
             System.out.print("averageSore in " + genre + " is ");
             System.out.println(average);
             return average;
@@ -141,10 +143,11 @@ public class FlipKartReviewService implements ReviewService {
         float score = 0;
         float reviewCount = 0;
         for (Movie m : movies) {
+            if (!m.hasReleased()) continue;
             score += m.getTotalScore();
             reviewCount += m.getReviewCount();
         }
-        return score / reviewCount;
+        return reviewCount == 0 ? 0 : score / reviewCount;
     }
 
     private boolean isValidScore(int score) {

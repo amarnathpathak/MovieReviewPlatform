@@ -48,23 +48,47 @@ public class MovieReviewApplication {
         System.out.println();
         reviewService.addReview("Salman", "Krrish", 9);
         System.out.println();
-
-        reviewService.getTopMovieScoredByAndReleaseYear(1, null, 2008);
+        reviewService.addReview("SRK", "Guru", 7);
         System.out.println();
-        reviewService.getTopMovieScoredByAndReleaseYear(1, ReviewerType.CRITIC, 2006);
-        System.out.println();
-        reviewService.getTopMovieScoredByAndReleaseYear(2, ReviewerType.VIEWER, 2006);
+        reviewService.addReview("Salman", "Metro", 8);
         System.out.println();
 
-        reviewService.getTopMovieScoredByAndGenre(1, null, Genre.DRAMA);
+        reviewService.getTopMovieScoredByAndReleaseYear(2, null, 2006);
         System.out.println();
-        reviewService.getTopMovieScoredByAndGenre(1, ReviewerType.VIEWER, Genre.DRAMA);
+        reviewService.getTopMovieScoredByAndReleaseYear(2, ReviewerType.CRITIC, 2016);
         System.out.println();
-        reviewService.getTopMovieScoredByAndGenre(1, ReviewerType.CRITIC, Genre.ROMANCE);
+        reviewService.getTopMovieScoredByAndReleaseYear(2, ReviewerType.VIEWER, 2012);
+        System.out.println();
+
+        reviewService.getTopMovieScoredByAndGenre(1, null, Genre.ACTION);
+        System.out.println();
+        reviewService.getTopMovieScoredByAndGenre(1, ReviewerType.VIEWER, Genre.ROMANCE);
+        System.out.println();
+        reviewService.getTopMovieScoredByAndGenre(1, ReviewerType.CRITIC, Genre.DRAMA);
         System.out.println();
 
         reviewService.averageSore(2006);
         System.out.println();
 
+        reviewService.averageSore(2012);
+        System.out.println();
+
+        reviewService.averageSore(2016);
+        System.out.println();
+
+        reviewService.averageSore(2018);
+        System.out.println();
+
+        reviewService.averageSore(2020);
+        System.out.println();
+
+        reviewService.averageSore(Genre.ACTION);
+        System.out.println();
+
+        reviewService.averageSore(Genre.DRAMA);
+        System.out.println();
+
+        reviewService.averageSore(Genre.ROMANCE);
+        System.out.println();
     }
 }
